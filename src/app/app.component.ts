@@ -5,6 +5,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { MainContentComponent } from './main-content/main-content/main-content.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatToolbarModule,
     MainContentComponent,
     MatSidenavModule,
-    MatIconModule
+    MatIconModule,
+    RouterModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
