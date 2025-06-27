@@ -6,6 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
+import { User } from '../../../models/user.class';
+import { log } from 'console';
 
 @Component({
   selector: 'app-dialog-add-user',
@@ -26,5 +28,13 @@ import { MatNativeDateModule, provideNativeDateAdapter } from '@angular/material
   styleUrl: './dialog-add-user.component.scss'
 })
 export class DialogAddUserComponent {
-  value = 'Clear me';
+  user: User = new User();
+
+  constructor() {}
+ 
+  saveUser() {
+    console.log(this.user);
+    
+  }
+  
 }
