@@ -1,6 +1,52 @@
 <h2 mat-dialog-title>Add User</h2>
 <mat-dialog-content>
-  Hare we can add Input field
+
+ <div>
+    <mat-form-field class="mr-16 mr-top" appearance="outline">
+      <mat-label>First Name</mat-label>
+      <input matInput placeholder="Placeholder">
+      <!-- <mat-hint>Please enter your first Name</mat-hint> -->
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="mr-top">
+      <mat-label>Last Name</mat-label>
+      <input matInput placeholder="Placeholder">
+      <!-- <mat-hint>Please enter your Last Name</mat-hint> -->
+    </mat-form-field>
+ </div>
+
+ <div> 
+  <mat-form-field color="accent" class="full-width">
+    <mat-label>Date of Birth</mat-label>
+    <input matInput [matDatepicker]="picker1">
+    <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+    <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+  </mat-form-field>
+</div>
+
+ <div>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Street + House No</mat-label>
+    <input matInput placeholder="Placeholder">
+    <!-- <mat-hint>Please enter your Last Name</mat-hint> -->
+  </mat-form-field>
+ </div>
+ <div>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Zip Code</mat-label>
+    <input matInput placeholder="Placeholder">
+    <!-- <mat-hint>Please enter your Last Name</mat-hint> -->
+  </mat-form-field>
+ </div>
+ <div>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>City</mat-label>
+    <input matInput placeholder="Placeholder">
+    <!-- <mat-hint>Please enter your Last Name</mat-hint> -->
+  </mat-form-field>
+ </div>
+
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>Cancel</button>
