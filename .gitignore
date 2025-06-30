@@ -43,8 +43,12 @@ Thumbs.db
 
 #firebase key
 /src/firebase.config.ts
+/src/app/app.config.ts
 
 # Firebase
 .firebase
 *-debug.log
 .runtimeconfig.json
+
+
+

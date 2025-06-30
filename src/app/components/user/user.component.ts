@@ -19,7 +19,8 @@ export class UserComponent {
   constructor(public dialog: MatDialog) { }
   
   openDialog() {
-    this.dialog.open(DialogAddUserComponent); //open component-DialogOverviewExampleDialog
+    this.dialog.open(DialogAddUserComponent); 
+    (document.activeElement as HTMLElement)?.blur();
   }
 
 }
