@@ -1,0 +1,34 @@
+.user-detail-header {
+  min-height: 250px;
+  background: #527e52;
+  color: #fff;
+  position: relative;
+}
+
+.user-profile {
+  position: absolute;
+  left: 15px;
+  bottom: 5px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  img {
+      width: 100px;
+      height: auto;
+    }
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    margin: 0;
+    font-size: 24px;
+  }
+
+  p {
+    margin: 0;
+    font-size: 14px;
+  }
+}

@@ -22,6 +22,11 @@
     cursor: pointer;
     transition: background-color 0.2s ease;
 
+    a{
+      text-align: center;
+      color: inherit;
+    }
+
     &:last-child {
       border-bottom: 0;
     }
