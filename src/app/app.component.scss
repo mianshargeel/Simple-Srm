@@ -25,6 +25,12 @@
         }
       }
   }
+  .toolbar-heading{
+    margin-left: 10px;
+    &:hover{
+      cursor: pointer;
+    }
+  }
   .logo-container{
     border-bottom: 1px solid rgba(0,0,0,0.07);
     padding: 0 16px;

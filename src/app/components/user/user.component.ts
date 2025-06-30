@@ -7,11 +7,12 @@ import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.compo
 import { User } from '../../../models/user.class';
 import {MatCardModule} from '@angular/material/card';
 import { UserService } from '../../services/user.service';
+import { RouterModule } from '@angular/router'; 
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [MatIconModule, MatButtonModule, MatTooltipModule, MatCardModule ],
+  imports: [MatIconModule, MatButtonModule, MatTooltipModule, MatCardModule, RouterModule ],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss'
 })
@@ -23,7 +24,7 @@ export class UserComponent {
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.userService.getUsers().subscribe(users => { //subscribe() gives you the full array of users
+    this.userService.getUsers().subscribe(users => { //subscribe() gives us the full array of users
       this.allUser = users;
     });
   }

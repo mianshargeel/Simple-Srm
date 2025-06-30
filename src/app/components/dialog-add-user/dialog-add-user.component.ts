@@ -36,7 +36,7 @@ export class DialogAddUserComponent {
   firestore = inject(Firestore)
   loading = false;
 
-  constructor(private dialogRef: MatDialogRef<DialogAddUserComponent>) {}
+  constructor(public dialogRef: MatDialogRef<DialogAddUserComponent>) {}
  
   saveUser() {
     this.loading = true;

@@ -3,31 +3,35 @@
     right: 56px;
     bottom: 56px;
 }
-.user-table{
+.user-table {
   width: 100%;
   border-collapse: collapse;
-    tr{
-      border-bottom: 1px solid rgba(0, 0, 0, 0.4);
-      &:Last-child {
-          border-bottom: 0; 
-      }
-      cursor: pointer;
-      &:first-child{
-        cursor: unset;
-        &:hover {
-            background-color: unset;
-          }
-      }//cursor-pointer for all rows except 1st
-      &:hover{
-        background-color: rgba(0, 0, 0, 0.08);
-      }
-    }
-    td{
-      height: 48px;
-    }
-  
-    th{
+
+  thead tr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+
+    th {
       color: rgba(0, 0, 0, 0.4);
+      font-weight: bold;
       text-align: start;
     }
+  }
+
+  tbody tr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.08);
+    }
+
+    td {
+      height: 48px;
+    }
+  }
 }
