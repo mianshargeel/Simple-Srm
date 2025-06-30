@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -6,6 +6,7 @@ import { MatDialog, MatDialogRef, MatDialogActions, MatDialogClose, MatDialogTit
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
 import { User } from '../../../models/user.class';
 import {MatCardModule} from '@angular/material/card';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-user',
@@ -16,8 +17,16 @@ import {MatCardModule} from '@angular/material/card';
 })
 export class UserComponent {
   user: User = new User();
+  userService = inject(UserService);
+  allUser: User[] = []; //will contail all users from firebase
   
   constructor(public dialog: MatDialog) { }
+
+  ngOnInit() {
+    this.userService.getUsers().subscribe(users => { //subscribe() gives you the full array of users
+      this.allUser = users;
+    });
+  }
   
   openDialog() {
     this.dialog.open(DialogAddUserComponent); 
