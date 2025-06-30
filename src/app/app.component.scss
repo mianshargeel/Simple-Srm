@@ -30,8 +30,15 @@
     padding: 0 16px;
     min-height: 64px;
     display: flex;
-    text-align: center;
-    text-align: center;
+      justify-content: flex-start;
+      align-items: center;
+    img{
+      width: 100px;
+      height: 64px;
+    }
+    span{
+      font-size: clamp(24px, 28px, 44px);
+    }
   }
 
   .menu-icon{
