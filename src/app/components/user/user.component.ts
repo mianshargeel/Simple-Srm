@@ -8,6 +8,7 @@ import { User } from '../../../models/user.class';
 import {MatCardModule} from '@angular/material/card';
 import { UserService } from '../../services/user.service';
 import { RouterModule } from '@angular/router'; 
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user',
@@ -20,13 +21,18 @@ export class UserComponent {
   user: User = new User();
   userService = inject(UserService);
   allUser: User[] = []; //will contail all users from firebase
+  private userSub!: Subscription;
   
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.userService.getUsers().subscribe(users => { //subscribe() gives us the full array of users
+    this.userSub = this.userService.getUsers().subscribe(users => { //subscribe() gives us the full array of users
       this.allUser = users;
     });
+  }
+
+  ngOnDestroy(): void {
+    this.userSub?.unsubscribe(); //Unsubscribe when component is destroyed
   }
   
   openDialog() {

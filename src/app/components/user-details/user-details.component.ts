@@ -10,6 +10,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDialog } from '@angular/material/dialog';
 import { EditUserDialogComponent } from '../edit-user-dialog/edit-user-dialog.component';
 import { EditAddressDialogComponent } from '../edit-address-dialog/edit-address-dialog.component';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class UserDetailsComponent {
 
   private route = inject(ActivatedRoute);
   private firestore = inject(Firestore);
+  private userSub!: Subscription;
 
   constructor(public dialog: MatDialog) { }
 
@@ -45,17 +47,24 @@ export class UserDetailsComponent {
   ngOnInit(): void {
     this.userId = this.route.snapshot.paramMap.get('id')!;
     const userDoc = doc(this.firestore, `users/${this.userId}`);
-    docData(userDoc, { idField: 'id' }).subscribe((userData) => {
+    this.userSub = docData(userDoc, { idField: 'id' }).subscribe((userData) => {
       this.user = userData as User;
     });
+  }
+
+  ngOnDestroy(): void {
+    this.userSub?.unsubscribe(); 
   }
 
   editUserDetail() {
     this.dialog.open(EditUserDialogComponent);
     (document.activeElement as HTMLElement)?.blur();
   }
+
   editAddress() {
-    this.dialog.open(EditAddressDialogComponent);
+    const dialog = this.dialog.open(EditAddressDialogComponent);
+    dialog.componentInstance.user = this.user;
+
     (document.activeElement as HTMLElement)?.blur();
   }
 
