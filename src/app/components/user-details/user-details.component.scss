@@ -32,3 +32,11 @@
     font-size: 14px;
   }
 }
+.menu-icon{
+  position: absolute;
+    right: 0;
+    top: 0;
+    &:hover{
+      cursor: pointer;
+    }
+}

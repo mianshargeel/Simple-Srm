@@ -3,11 +3,19 @@ import {MatCardModule} from '@angular/material/card';
 import { User } from '../../../models/user.class';
 import { Firestore, doc, docData } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDialog } from '@angular/material/dialog';
+import { EditUserDialogComponent } from '../edit-user-dialog/edit-user-dialog.component';
+import { EditAddressDialogComponent } from '../edit-address-dialog/edit-address-dialog.component';
+
 
 @Component({
   selector: 'app-user-details',
   standalone: true,
-  imports: [MatCardModule],
+  imports: [MatCardModule, CommonModule, MatIconModule, MatButtonModule, MatMenuModule],
   templateUrl: './user-details.component.html',
   styleUrl: './user-details.component.scss'
 })
@@ -17,6 +25,8 @@ export class UserDetailsComponent {
 
   private route = inject(ActivatedRoute);
   private firestore = inject(Firestore);
+
+  constructor(public dialog: MatDialog) { }
 
   /**
  * Extracts the `id` parameter from the current route URL.
@@ -33,11 +43,20 @@ export class UserDetailsComponent {
  * This ID is later used to fetch the corresponding user document from Firestore.
  */
   ngOnInit(): void {
-    this.userId = this.route.snapshot.paramMap.get('id')!;//when i click on any user, Angular automatically extracts id of that user as the id parameter. 
+    this.userId = this.route.snapshot.paramMap.get('id')!;
     const userDoc = doc(this.firestore, `users/${this.userId}`);
     docData(userDoc, { idField: 'id' }).subscribe((userData) => {
       this.user = userData as User;
     });
+  }
+
+  editUserDetail() {
+    this.dialog.open(EditUserDialogComponent);
+    (document.activeElement as HTMLElement)?.blur();
+  }
+  editAddress() {
+    this.dialog.open(EditAddressDialogComponent);
+    (document.activeElement as HTMLElement)?.blur();
   }
 
 }

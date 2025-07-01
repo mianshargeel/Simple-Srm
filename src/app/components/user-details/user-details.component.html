@@ -1,5 +1,10 @@
 @if(user) {
   <mat-card class="user-detail-header">
+    <button mat-icon-button class="menu-icon" [matMenuTriggerFor]="userMenu"> <mat-icon>more_vert</mat-icon> </button>
+    <mat-menu #userMenu="matMenu">
+      <button mat-menu-item (click)="editUserDetail()">Edit</button>
+    </mat-menu>
+
     <div class="user-profile">
       <img src="./../../../assets/img/profile1.png" alt="Profile image" />
       <div class="user-info">
@@ -10,11 +15,30 @@
   </mat-card>
   
   <mat-card class="mt-32">
+    <button mat-icon-button class="menu-icon" [matMenuTriggerFor]="addressMenu"> <mat-icon>more_vert</mat-icon></button>
+    <mat-menu #addressMenu="matMenu">
+      <button mat-menu-item (click)="editAddress()">Edit</button>
+    </mat-menu>
+
     <mat-card-header>
       <mat-card-title>Address</mat-card-title>
     </mat-card-header>
     <mat-card-content>
         <p>{{ user.street }}, {{ user.zipCode }} {{ user.city }}</p>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="mt-32">
+    <button mat-icon-button class="menu-icon" [matMenuTriggerFor]="bithdayMenu" > <mat-icon>more_vert</mat-icon></button>
+    <mat-menu #bithdayMenu="matMenu">
+      <button mat-menu-item>Edit</button>
+    </mat-menu>
+
+    <mat-card-header>
+      <mat-card-title>Birthday</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <p>{{ user.birthDay }}</p>
     </mat-card-content>
   </mat-card>
 }

@@ -10,8 +10,8 @@
       </thead>
       <tbody>
           @for(user of allUser; track user.id) {
-            <tr>
-              <a [routerLink]="['/user', user.id]">{{ user.firstName }} {{ user.lastName }}</a>
+            <tr [routerLink]="['/user', user.id]">
+              <td> {{ user.firstName }} {{ user.lastName }} </td> 
               <td>{{user.email}}</td>
               <td>{{user.city}}</td>
             </tr>
