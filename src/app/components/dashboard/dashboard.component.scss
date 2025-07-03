@@ -60,6 +60,30 @@
         font-size: 1.8rem;
         font-weight: bold;
         color: #3b82f6;
+        &:hover{
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+.user-list {
+  margin-top: 2rem;
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      padding: 0.5rem;
+      background: white;
+      margin-bottom: 0.5rem;
+      border-radius: 6px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+      span {
+        color: #666;
+        font-size: 0.9rem;
       }
     }
   }

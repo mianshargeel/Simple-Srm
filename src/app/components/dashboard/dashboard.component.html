@@ -1,29 +1,49 @@
+<main class="main-content">
+  <header class="dashboard-header">
+    <h1>Dashboard</h1>
+    <div class="header-actions">
+      <input
+        type="text"
+        placeholder="Search user by name or email..."
+        [(ngModel)]="searchTerm"
+        (input)="filterUsers()"
+      />
+      <div class="user-avatar">SH</div>
+    </div>
+  </header>
 
+  <section class="cards-grid">
+    <div class="card">
+      <h3>Total Users</h3>
+      <p class="card-number" routerLink="/user">{{ totalUsers }}</p>
+    </div>
+    <div class="card">
+      <h3>Monthly Sales</h3>
+      <p class="card-number">$37,450</p>
+    </div>
+    <div class="card">
+      <h3>Open Tasks</h3>
+      <p class="card-number">16</p>
+    </div>
+  </section>
 
-  <main class="main-content">
-    <header class="dashboard-header">
-      <h1>Dashboard</h1>
-      <div class="header-actions">
-        <input type="text" placeholder="Search...">
-        <div class="user-avatar">SH</div>
-      </div>
-    </header>
-  
-    <section class="cards-grid">
-      <div class="card">
-        <h3>Total Users</h3>
-        <p class="card-number">{{ totalUsers}}</p>
-      </div>
-      <div class="card">
-        <h3>Monthly Sales</h3>
-        <p class="card-number">$37,450</p>
-      </div>
-      <div class="card">
-        <h3>Open Tasks</h3>
-        <p class="card-number">16</p>
-      </div>
-    </section>
-  </main>
-  
-
-
+  @if (filteredUsers.length > 0) {
+  <section class="user-list">
+    <h2>Matching Users</h2>
+    <ul>
+      @for (user of filteredUsers; track user.id) {
+      <li>
+        {{ user.firstName }} {{ user.lastName }} — <span>{{ user.email }}</span>
+      </li>
+      }
+    </ul>
+  </section>
+  } @else if (searchTerm) {
+  <section class="mt-32">
+    <p>
+      No users match "<strong>{{ searchTerm }}</strong
+      >"
+    </p>
+  </section>
+  }
+</main>
