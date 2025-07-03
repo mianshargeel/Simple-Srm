@@ -1,3 +1,5 @@
+import { Timestamp } from '@angular/fire/firestore';
+
 export class User {
   id?: string; //
   firstName: string;
@@ -9,14 +11,24 @@ export class User {
   city: string;
   
   constructor(obj?: any) {
-    this.firstName = obj ? obj.firstName : '';
-    this.lastName = obj ? obj.lastName : '';
-    this.email = obj ? obj.email : '';
-    this.birthDay =  obj ? obj.birthDay : '';
-    this.street =  obj ? obj.street : '';
-    this.zipCode =  obj ? obj.zipCode : '';
-    this.city = obj ? obj.city : '';
-    this.id = obj?.id; 
+    this.firstName = obj?.firstName || '';
+    this.lastName = obj?.lastName || '';
+    this.email = obj?.email || '';
+    this.street = obj?.street || '';
+    this.zipCode = obj?.zipCode || '';
+    this.city = obj?.city || '';
+    this.id = obj?.id;
+
+    const birth = obj?.birthDay;
+    if (birth instanceof Timestamp) {
+      this.birthDay = birth.toDate();
+    } else if (birth instanceof Date) {
+      this.birthDay = birth;
+    } else if (typeof birth === 'string') {
+      this.birthDay = new Date(birth);
+    } else {
+      this.birthDay = null;
+    }
   }
 
   /**
@@ -29,17 +41,15 @@ export class User {
  *
  * @returns An object containing user data excluding the `id` field.
  */
-  public toJSON() { // converting to JSON
-    const { id, ...data } = this; 
-    return { //excluding id 
-        ...data,
-        firstName: this.firstName,
-        lastName: this.lastName,
-        email: this.email,
-        birthDay:  this.birthDay,
-        street:  this.street,
-        zipCode: this.zipCode,
-        city: this.city,
-    }
+  public toJSON() {
+    const { id, ...rest } = this;
+  
+    return {
+      ...rest,
+      birthDay:
+        this.birthDay instanceof Date
+          ? Timestamp.fromDate(this.birthDay)
+          : this.birthDay || null, // handles empty strings or null
+    };
   }
 }

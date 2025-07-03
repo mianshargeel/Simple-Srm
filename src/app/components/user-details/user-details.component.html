@@ -10,6 +10,7 @@
       <div class="user-info">
         <h2>{{ user.firstName }} {{ user.lastName }}</h2>
         <p>{{ user.email }}</p>
+        <p>{{ user.birthDay | date:'longDate' }}</p>
       </div>
     </div>
   </mat-card>
@@ -28,18 +29,5 @@
     </mat-card-content>
   </mat-card>
 
-  <mat-card class="mt-32">
-    <button mat-icon-button class="menu-icon" [matMenuTriggerFor]="bithdayMenu" > <mat-icon>more_vert</mat-icon></button>
-    <mat-menu #bithdayMenu="matMenu">
-      <button mat-menu-item>Edit</button>
-    </mat-menu>
-
-    <mat-card-header>
-      <mat-card-title>Birthday</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <p>{{ user.birthDay }}</p>
-    </mat-card-content>
-  </mat-card>
 }
 

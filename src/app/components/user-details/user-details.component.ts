@@ -48,7 +48,7 @@ export class UserDetailsComponent {
     this.userId = this.route.snapshot.paramMap.get('id')!;
     const userDoc = doc(this.firestore, `users/${this.userId}`);
     this.userSub = docData(userDoc, { idField: 'id' }).subscribe((userData) => {
-      this.user = userData as User;
+      this.user = new User(userData);
     });
   }
 

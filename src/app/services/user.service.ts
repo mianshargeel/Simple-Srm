@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Firestore, collection, collectionData,  doc, updateDoc, } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { User } from '../../models/user.class';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,9 @@ export class UserService {
 
   getUsers(): Observable<User[]> {
     const usersRef = collection(this.firestore, 'users');
-    return collectionData(usersRef, { idField: 'id' }) as Observable<User[]>;
+    return collectionData(usersRef, { idField: 'id' }).pipe(
+      map(users => users.map(user => new User(user))) 
+    );
   }
 
   updateUser(userId: string, userData: Partial<User>): Promise<void> {

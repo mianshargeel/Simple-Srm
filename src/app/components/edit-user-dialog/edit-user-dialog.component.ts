@@ -7,11 +7,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { UserService } from '../../services/user.service';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-edit-user-dialog',
   standalone: true,
-  imports: [MatDialogModule, FormsModule, MatFormFieldModule, MatInputModule, MatProgressBarModule, MatButtonModule],
+  imports: [MatDialogModule, FormsModule, MatFormFieldModule, MatInputModule, MatProgressBarModule, MatButtonModule, MatDatepickerModule],
   templateUrl: './edit-user-dialog.component.html',
   styleUrl: './edit-user-dialog.component.scss'
 })
@@ -29,7 +30,8 @@ export class EditUserDialogComponent {
       await this.userService.updateUser(this.userId!, {
         firstName: this.user.firstName,
         lastName: this.user.lastName,
-        email: this.user.email
+        email: this.user.email,
+        birthDay: this.user.birthDay
       });
       
       this.dialogRef.close(true);
