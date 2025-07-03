@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData,  doc, updateDoc, } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { User } from '../../models/user.class';
 
@@ -15,5 +15,11 @@ export class UserService {
     const usersRef = collection(this.firestore, 'users');
     return collectionData(usersRef, { idField: 'id' }) as Observable<User[]>;
   }
+
+  updateUser(userId: string, userData: Partial<User>): Promise<void> {
+    const userDocRef = doc(this.firestore, `users/${userId}`);
+    return updateDoc(userDocRef, userData);
+  }
+  
 
 }

@@ -57,13 +57,17 @@ export class UserDetailsComponent {
   }
 
   editUserDetail() {
-    this.dialog.open(EditUserDialogComponent);
+    const dialog = this.dialog.open(EditUserDialogComponent);
+    dialog.componentInstance.user = new User(this.user);
+    dialog.componentInstance.userId = this.user.id;  
+
     (document.activeElement as HTMLElement)?.blur();
   }
 
   editAddress() {
     const dialog = this.dialog.open(EditAddressDialogComponent);
-    dialog.componentInstance.user = this.user;
+    dialog.componentInstance.user = new User(this.user);
+    dialog.componentInstance.userId = this.user.id; 
 
     (document.activeElement as HTMLElement)?.blur();
   }
